@@ -87,8 +87,11 @@ archer-ax1500-custom/
 │   └── startup.sh            # Auto-start script
 ├── docs/                     # Documentation
 │   ├── EXPLOIT_GUIDE.md      # Detailed exploit guide
-│   ├── BUILD_GUIDE.md        # Build custom packages
+│   ├── CVE_RESEARCH.md       # All CVEs documented
+│   ├── HARDWARE_SPECS.md     # Complete hardware specs
 │   ├── HARDWARE_MODS.md      # Hardware modifications
+│   ├── OPENWRT_ALTERNATIVES.md  # OpenWRT router guide
+│   ├── BUILD_GUIDE.md        # Build custom packages
 │   └── TROUBLESHOOTING.md    # Common issues
 ├── patches/                  # Source patches
 │   ├── router.patch          # Main source patch
