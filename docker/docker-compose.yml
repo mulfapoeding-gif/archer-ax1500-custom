@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  build:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ax1500-build
+    volumes:
+      - ../firmware:/router
+      - ../scripts:/router/scripts
+      - ../patches:/router/patches
+    working_dir: /router
+    stdin_open: true
+    tty: true
+    command: /bin/bash

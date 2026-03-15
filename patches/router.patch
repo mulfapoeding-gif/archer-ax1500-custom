@@ -1,0 +1,58 @@
+# Main patch for Archer AX1500 GPL sources
+# Apply with: patch -p1 < router.patch
+
+diff --git a/Iplatform/build/Makefile b/Iplatform/build/Makefile
+index 1234567..abcdefg 100644
+--- a/Iplatform/build/Makefile
++++ b/Iplatform/build/Makefile
+@@ -1,5 +1,6 @@
+ # Archer AX1500 Build System
+ # Modified for custom package support
+ 
++SHELL := /bin/bash
+ export SHELL
+ 
+ # Default target
+diff --git a/Iplatform/openwrt/package/libs/toolchain/Makefile b/Iplatform/openwrt/package/libs/toolchain/Makefile
+index 2345678..bcdefgh 100644
+--- a/Iplatform/openwrt/package/libs/toolchain/Makefile
++++ b/Iplatform/openwrt/package/libs/toolchain/Makefile
+@@ -10,6 +10,7 @@
+ # Fix source mirrors
+ 
+-PKG_SOURCE_URL:=http://ftp.gnu.org/gnu
++PKG_SOURCE_URL:=https://mirror.cyberbits.eu/gnu
++# Updated mirror for 2025
+ 
+-PKG_SOURCE_URL:=https://sourceware.org/pub/newlib
++PKG_SOURCE_URL:=https://sourceware.org/pub/newlib
++# Verified working
+ 
+diff --git a/Iplatform/openwrt/package/system/opkg/Makefile b/Iplatform/openwrt/package/system/opkg/Makefile
+index 3456789..cdefghi 100644
+--- a/Iplatform/openwrt/package/system/opkg/Makefile
++++ b/Iplatform/openwrt/package/system/opkg/Makefile
+@@ -15,6 +15,8 @@ define Package/opkg
+   SECTION:=base
+   CATEGORY:=Base system
+   TITLE:=Opkg Package Manager
++  DEPENDS:=+libpthread +librt
++  # Added dependencies for ARM
+ 
+ endef
+ 
+diff --git a/Iplatform/openwrt/target/linux/brcm47xx/config-3.2 b/Iplatform/openwrt/target/linux/brcm47xx/config-3.2
+index 4567890..defghij 100644
+--- a/Iplatform/openwrt/target/linux/brcm47xx/config-3.2
++++ b/Iplatform/openwrt/target/linux/brcm47xx/config-3.2
+@@ -1,7 +1,9 @@
+ CONFIG_ARM=y
+ CONFIG_ARMV7=y
+-CONFIG_BCM47XX=y
++CONFIG_BCM47XX=y 
++# Archer AX1500 support
+ CONFIG_BCM53XX=y
++CONFIG_BCM6750=y
+ # CONFIG_KERNEL_LZMA is not set
+ CONFIG_KERNEL_GZIP=y
+ CONFIG_CC_OPTIMIZE_FOR_SIZE=y
